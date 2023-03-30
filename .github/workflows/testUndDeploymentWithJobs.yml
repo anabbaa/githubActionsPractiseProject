@@ -1,0 +1,42 @@
+name: test with jobs
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install nodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependiemcies
+        run: npm ci
+      - name: run lint
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependiemcies
+        run: npm ci
+      - name: test code
+        run: npm run test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependiemcies
+        run: npm ci
+      - name: build
+        run: npm run build
